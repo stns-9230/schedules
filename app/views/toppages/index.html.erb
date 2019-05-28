@@ -1,3 +1,6 @@
+<% if logged_in? %>
+  <p>ログイン完了ユーザ： <%= current_user.name %></p>
+<% else %>
 <div class="center jumbotron">
   <div class="text-center">
     <h1>Schedulesへようこそ</h1>
@@ -5,6 +8,10 @@
        スケジュールの登録、編集、確認ができます。</p>
   </div>
 </div>
-<div class="center">
+<div class="row">
+  <div class="col-sm-4 offset-sm-3">
   <%= link_to '会員登録', signup_path, class: 'btn btn-lg btn-primary' %>
+  </div>
+  <%= link_to 'ログイン', login_path, class: 'btn btn-lg btn-primary' %>
 </div>
+<% end %>
