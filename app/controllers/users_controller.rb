@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @schedule = current_user.schedules.build
+    @schedules = current_user.schedules.order(start: :desc).page(params[:page])
   end
 
   def new
