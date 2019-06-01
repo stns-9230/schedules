@@ -9,12 +9,13 @@ class UsersController < ApplicationController
     @schedule = current_user.schedules.build
     schedules = @user.schedules
     @next = schedules.where('start >= ?', Time.zone.now).order(start: :asc).first
-    @day1 = schedules.where(start: Time.zone.today.beginning_of_day...Time.zone.today.end_of_day)
-    @day2 = schedules.where(start: Time.zone.today.since(1.days).beginning_of_day...Time.zone.today.since(1.days).end_of_day)
-    @day3 = schedules.where(start: Time.zone.today.since(2.days).beginning_of_day...Time.zone.today.since(2.days).end_of_day)
-    @day4 = schedules.where(start: Time.zone.today.since(3.days).beginning_of_day...Time.zone.today.since(3.days).end_of_day)
-    @day5 = schedules.where(start: Time.zone.today.since(4.days).beginning_of_day...Time.zone.today.since(4.days).end_of_day)
-    @day6 = schedules.where(start: Time.zone.today.since(5.days).beginning_of_day...Time.zone.today.since(5.days).end_of_day)
+    @important = @user.important_schedules.where('start >= ?', Time.zone.now).order(start: :asc).first
+    @day1 = schedules.where(start: Time.zone.today.beginning_of_day...Time.zone.today.end_of_day).order(start: :asc)
+    @day2 = schedules.where(start: Time.zone.today.since(1.days).beginning_of_day...Time.zone.today.since(1.days).end_of_day).order(start: :asc)
+    @day3 = schedules.where(start: Time.zone.today.since(2.days).beginning_of_day...Time.zone.today.since(2.days).end_of_day).order(start: :asc)
+    @day4 = schedules.where(start: Time.zone.today.since(3.days).beginning_of_day...Time.zone.today.since(3.days).end_of_day).order(start: :asc)
+    @day5 = schedules.where(start: Time.zone.today.since(4.days).beginning_of_day...Time.zone.today.since(4.days).end_of_day).order(start: :asc)
+    @day6 = schedules.where(start: Time.zone.today.since(5.days).beginning_of_day...Time.zone.today.since(5.days).end_of_day).order(start: :asc)
   end
 
   def new

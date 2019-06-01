@@ -22,7 +22,17 @@
         </div>
         <div class="border col-sm-4 bg-light">
           <p>重要な予定</p>
-          
+          <% unless user.important_schedules.where('start >= ?', Time.zone.now).order(start: :asc).first %>
+            <% user.important_schedules.inspect %>
+            <p>重要な予定はありません。</p>
+          <% else %>
+          <ul class="list-unstyled">
+            <li>開始時刻：<%= user.important_schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.start %></li>
+            <li>終了時刻：<%= user.important_schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.end %></li>
+            <li>タイトル：<%= user.important_schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.title %></li>
+            <li>予定詳細：<%= user.important_schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.content %></li>
+          </ul>
+          <% end %>
         </div>
       </li>
     <% end %>

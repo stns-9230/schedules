@@ -9,10 +9,13 @@
     <li>タイトル：<%= @schedule.title %></li>
     <li>詳細：<%= @schedule.content %></li>
   </ul>
+  <div class="row">
   <% if current_user == @schedule.user %>
-    <%= link_to 'この予定を編集', edit_schedule_path, class: 'btn btn-primary btn-sm' %>
-    <%= link_to 'この予定を削除', @schedule, method: :delete, data: { confirm: "本当に削除しますか？"}, class: 'btn btn-danger btn-sm' %>
+    <%= link_to 'この予定を編集', edit_schedule_path, class: 'btn btn-primary btn-sm mr-1' %>
+    <%= link_to 'この予定を削除', @schedule, method: :delete, data: { confirm: "本当に削除しますか？"}, class: 'btn btn-danger btn-sm mr-1' %>
+    <%= render 'importants/important_button', schedule: @schedule %>
   <% end %>
+  </div>
 </div>
 <div class="text-center">
   <%= link_to 'ユーザページへ戻る', user_path(id: @schedule.user_id), class: 'btn btn-success col-sm-3' %>

@@ -1,0 +1,11 @@
+<% if current_user.important?(schedule) %>
+  <%= form_with(model: current_user.importants.find_by(schedule_id: schedule.id), local: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :schedule_id, schedule.id %>
+    <%= f.submit '解除', class: 'btn btn-danger btn sm' %>
+  <% end %>
+<% else %>
+  <%= form_with(model: current_user.importants.build, local: true) do |f| %>
+    <%= hidden_field_tag :schedule_id, schedule.id %>
+    <%= f.submit '重要', class: 'btn btn-primary btn-sm' %>
+  <% end %>
+<% end %>

@@ -24,6 +24,17 @@
   </div>
   <div class="border col-sm-4 bg-light">
     <p>重要な予定</p>
+  <% unless @important %>
+    <% @important.inspect %>
+    <p>重要な予定はありません。</p>
+  <% else %>
+    <ul class="list-unstyled">
+      <li>開始時刻：<%= @important.start %></li>
+      <li>終了時刻：<%= @important.end %></li>
+      <li>タイトル：<%= link_to @important.title, schedule_path(id: @important.id) %></li>
+      <li>予定詳細：<%= @important.content %></li>
+    </ul>
+  <% end %>
   </div>
 </div>
 <h2>直近のスケジュール</h2>

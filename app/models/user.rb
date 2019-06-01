@@ -7,5 +7,19 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :schedules
+  has_many :importants,  dependent: :destroy
+  has_many :important_schedules, through: :importants, source: :schedule
+
+  def important(schedule)
+    self.importants.find_or_create_by(schedule_id: schedule.id)
+  end
   
+  def unimportant(schedule)
+    important = self.importants.find_by(schedule_id: schedule.id)
+    important.destroy if important
+  end
+  
+  def important?(schedule)
+    self.important_schedules.include?(schedule)
+  end
 end
