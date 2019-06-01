@@ -14,7 +14,7 @@ class SchedulesController < ApplicationController
     @schedule = current_user.schedules.build(schedule_params)
     if @schedule.save
       flash[:success] = '予定を投稿しました。'
-      redirect_to root_url
+      redirect_to schedule_url(id: @schedule.id)
     else
       flash.now[:danger] = '予定の投稿に失敗しました。'
       render 'new'
@@ -39,7 +39,7 @@ class SchedulesController < ApplicationController
   def destroy
     @schedule.destroy
     flash[:success] = '予定を削除しました。'
-    redirect_to  root_url
+    redirect_to  user_url(id: current_user.id)
   end
   
   private

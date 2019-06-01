@@ -1,5 +1,11 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ： <%= current_user.name %></p>
+  <div class="jumbotron text-center">
+    <p>ようこそ、 <%= current_user.name %>さん！</p>
+    <div>
+　  <%= link_to 'ユーザページへ', user_path(id: current_user.id), class: 'btn btn-primary btn-sm' %>
+    <%= link_to '予定作成', new_schedule_path, class: 'offset-sm-1 btn btn-primary btn-sm' %>
+    </div>
+  </div>
 <% else %>
 <div class="center jumbotron">
   <div class="text-center">

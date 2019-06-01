@@ -1,14 +1,104 @@
-<div class="row">
-  <aside class= "col-sm-4">
+<h1>ユーザ詳細</h1>
+<div class="row jumbotron">
+  <aside class= "col-sm-3 text-center">
     <div class="card">
       <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 80 }) %>" alt="">
       </div>
       <div class="card-footer">
-      <h3 class="card-title"><%= @user.name %></h3>    
+      <h4 class="card-title"><%= @user.name %></h4>    
       </div>
     </div>
+    <% if current_user == @user %>
     <%= link_to '予定新規作成', new_schedule_path, class: 'btn btn-primary btn-block' %>
+    <% end %>
   </aside>
+  <div class="border offset-sm-1 col-sm-4 bg-light">
+    <p>次の予定</p>
+    <ul  class="list-unstyled">
+      <li>開始時刻：<%= @next.start %></li>
+      <li>終了時刻：<%= @next.end %></li>
+      <li>タイトル：<%= link_to @next.title, schedule_path(id: @next.id) %></li>
+      <li>予定詳細：<%= @next.content %></li>
+    </ul>
+  </div>
+  <div class="border col-sm-4 bg-light">
+    <p>重要な予定</p>
+  </div>
 </div>
+<h2>直近のスケジュール</h2>
 
+<div class="row">
+  <div class="card col-sm-2">
+    <div class="card-header">1日目</div>
+    <div class="card-body">
+      <% @day1.each do |schedule| %>
+      <ul class="list-unstyled">
+        <li>開始：<%= schedule.start %></li>
+        <li>終了：<%= schedule.end %></li>
+        <li><%= link_to schedule.title, schedule_path(id: schedule.id) %> </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class="card col-sm-2">
+    <div class="card-header">2日目</div>
+    <div class="card-body">
+      <% @day2.each do |schedule| %>
+        <ul class="list-unstyled">
+          <li>開始：<%= schedule.start %></li>
+          <li>終了：<%= schedule.end %></li>
+          <li><%= link_to schedule.title, schedule_path(id: schedule.id) %> </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class="card col-sm-2">
+    <div class="card-header">3日目</div>
+    <div class="card-body">
+      <% @day3.each do |schedule| %>
+        <ul class="list-unstyled">
+          <li>開始：<%= schedule.start %></li>
+          <li>終了：<%= schedule.end %></li>
+          <li><%= link_to schedule.title, schedule_path(id: schedule.id) %> </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <div class="card col-sm-2">
+    <div class="card-header">4日目</div>
+    <div class="card-body">
+      <% @day4.each do |schedule| %>
+        <ul class="list-unstyled">
+          <li>開始：<%= schedule.start %></li>
+          <li>終了：<%= schedule.end %></li>
+          <li><%= link_to schedule.title, schedule_path(id: schedule.id) %> </li>
+        </ul>
+      <% end %>  
+    </div>
+  </div>
+  <div class="card col-sm-2">
+    <div class="card-header">5日目</div>
+    <div class="card-body">
+       <% @day5.each do |schedule| %>
+          <ul class="list-unstyled">
+            <li>開始：<%= schedule.start %></li>
+            <li>終了：<%= schedule.end %></li>
+            <li><%= link_to schedule.title, schedule_path(id: schedule.id) %> </li>
+          </ul>
+      <% end %>     
+    </div>
+  </div>
+  <div class="card col-sm-2">
+    <div class="card-header">6日目</div>
+    <div class="card-body">
+      <% @day6.each do |schedule| %>
+        <ul class="list-unstyled">
+          <li>開始：<%= schedule.start %></li>
+          <li>終了：<%= schedule.end %></li>
+          <li><%= link_to schedule.title, schedule_path(id: schedule.id) %> </li>
+        </ul>
+      <% end %>      
+      
+    </div>
+</div>
