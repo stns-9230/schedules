@@ -13,12 +13,17 @@
         </div>
         <div class="border offset-sm-1 col-sm-4 bg-light">
           <p>次の予定</p>
+          　<% unless user.schedules.where('start >= ?', Time.zone.now).order(start: :asc).first %>
+          　<% user.schedules.inspect %>
+          　<p>予定がありません。</p>
+          　<% else %>
              <ul  class="list-unstyled">
                 <li>開始時刻：<%= user.schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.start %></li>
                 <li>終了時刻：<%= user.schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.end %></li>
                 <li>タイトル：<%= user.schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.title %></li>
                 <li>予定詳細：<%= user.schedules.where('start >= ?', Time.zone.now).order(start: :asc).first.content %></li>
-              </ul> 
+              </ul>
+            <% end %>
         </div>
         <div class="border col-sm-4 bg-light">
           <p>重要な予定</p>

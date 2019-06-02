@@ -15,12 +15,17 @@
   </aside>
   <div class="border offset-sm-1 col-sm-4 bg-light">
     <p>次の予定</p>
+    <% unless @next %>
+    <% @next.inspect %>
+    <p>予定がありません。</p>
+    <% else %>
     <ul  class="list-unstyled">
       <li>開始時刻：<%= @next.start %></li>
       <li>終了時刻：<%= @next.end %></li>
       <li>タイトル：<%= link_to @next.title, schedule_path(id: @next.id) %></li>
       <li>予定詳細：<%= @next.content %></li>
     </ul>
+    <% end %>
   </div>
   <div class="border col-sm-4 bg-light">
     <p>重要な予定</p>
