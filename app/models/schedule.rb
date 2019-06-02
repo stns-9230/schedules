@@ -11,4 +11,7 @@ class Schedule < ApplicationRecord
                                
   validates_datetime :end, after: lambda { DateTime.now },
                                after_message: "must be be more future than now"
+
+  has_many :importants, dependent: :destroy
+  
 end
